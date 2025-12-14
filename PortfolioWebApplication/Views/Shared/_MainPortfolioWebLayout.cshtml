@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body ng-app="PortfolioWebApplication">
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="@Url.Content("~/Scripts/jquery-3.7.0.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Portfolio JS/module.js")"></script>
+    <script src="@Url.Content("~/Scripts/Portfolio JS/controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/Portfolio JS/services.js")"></script>
+
+    <script src="node_modules/chart.js/Chart.min.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</body>
+</html>

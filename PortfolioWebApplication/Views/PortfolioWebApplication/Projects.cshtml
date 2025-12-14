@@ -1,0 +1,395 @@
+﻿@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_MainPortfolioWebLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Gabriel Uy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff; /* base color */
+            position: relative;
+            min-height: 100vh;
+        }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/images/25097.jpg") no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.6; /* 👈 adjust this (0.0 – 1.0) */
+                z-index: -1;
+            }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #5a5a5a;
+                font-weight: 400;
+                transition: color 0.2s;
+            }
+
+                .nav-links a:hover {
+                    color: #000;
+                }
+
+        .cta-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+            .cta-btn:hover {
+                background: #f5f5f5;
+            }
+
+        /* Added divider line between nav and content */
+        .nav-divider {
+            height: 1px;
+            background-color: #ebebeb;
+            margin: 0 48px;
+        }
+
+        .main-content {
+            padding: 64px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-title {
+            font-size: 42px;
+            font-weight: 300;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .page-subtitle {
+            color: #5a5a5a;
+            line-height: 1.5;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .project-preview {
+            border-radius: 12px;
+            overflow: hidden; /* makes rounded corners apply to images */
+            height: auto; /* let the image control height */
+            padding: 0; /* remove inner padding */
+            background: none; /* remove navy background */
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto; /* keeps original proportions */
+            max-height: 300px; /* optional: keeps images equal height */
+            border-radius: 12px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+            will-change: transform, filter; /* optimizes animation */
+        }
+
+        .project-image:hover {
+            filter: brightness(90%) saturate(105%); /* richer color on hover */
+            transform: scale(1.05); /* smoother lift + zoom */
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25), 0 6px 12px rgba(0, 0, 0, 0.1); /* layered shadow */
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .control-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .control-red {
+            background-color: #ff4444;
+        }
+
+        .control-yellow {
+            background-color: #ffaa00;
+        }
+
+        .control-green {
+            background-color: #00ff00;
+        }
+
+        .app-mockup {
+            background-color: #4c4d59;
+            border-radius: 8px;
+            padding: 16px;
+            width: 96px;
+            height: 128px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 80px;
+            background-color: #ff4444;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .accent-red {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            background-color: #ff4444;
+            border-radius: 50%;
+        }
+
+        .project-info h3 {
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+
+        .project-info p {
+            color: #5a5a5a;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .bottom-projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .bottom-project {
+            background-color: #22262f;
+            border-radius: 8px;
+            padding: 24px;
+            height: 256px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid #e5e5e5;
+            padding: 40px 48px;
+            background: #111;
+            color: #aaa;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+            .footer-links a {
+                text-decoration: none;
+                color: #aaa;
+                font-size: 14px;
+                transition: color 0.2s;
+            }
+
+                .footer-links a:hover {
+                    color: #fff;
+                }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+            .footer-social a {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 1px solid #444;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #aaa;
+                text-decoration: none;
+            }
+
+                .footer-social a:hover {
+                    color: white;
+                    border-color: white;
+                }
+
+        .copyright {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <a href="@Url.Action("Home", "Home")"
+           class="logo @(ViewBag.Title == "Home" ? "active" : "")">
+            Gabriel Uy
+        </a>
+        <div class="nav-links">
+
+            <a href="@Url.Action("Home", "Home")" class="@(ViewBag.Title == "Home" ? "active" : "")">Home</a>
+            <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")" style="font-weight: bold;">Projects</a>
+            <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+            <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            <a href="@Url.Action("Contact", "Home")" class="@(ViewBag.Title == "Contact" ? "active" : "cta-btn")">Contact</a>
+        </div>
+    </nav>
+    <!-- Added divider line -->
+    <div class="nav-divider"></div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Selected projects</h1>
+            <p class="page-subtitle">A curated collection of my design work, showcasing user-centered solutions and innovative approaches to mobile app design.</p>
+        </div>
+
+        <!-- Top Projects -->
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-preview">
+                    <img src="~/images/fitness.gif" alt="Fitness Tracker App" class="project-image">
+                </div>
+                <div class="project-info">
+                    <h3>Redesign project: fitness tracker app</h3>
+                    <p>Redesigning a fitness tracking app to improve user engagement and streamline the workout logging experience.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <img src="~/images/proj2.png" alt="Social Dining App" class="project-image">
+                </div>
+                <div class="project-info">
+                    <h3>Graduation project: social dining app design</h3>
+                    <p>Designing a mobile app to connect food enthusiasts through shared dining experiences, fostering community and culinary exploration.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Projects -->
+        <div class="bottom-projects">
+            <div class="project-card">
+                <div class="project-preview">
+                    <img src="~/images/image 89.png" alt="Finance Dashboard" class="project-image">
+
+                </div>
+                <div class="project-info">
+                    <h3>Dashboard project: finance tracking system</h3>
+                    <p>A clean and intuitive dashboard for monitoring financial data with a focus on usability and clarity.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-preview">
+                    <img src="~/images/monitor.gif" alt="E-commerce App" class="project-image">
+                </div>
+                <div class="project-info">
+                    <h3>Case study: e-commerce web app</h3>
+                    <p>Designing a smooth shopping experience with improved navigation and engaging product displays.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>Gabriel Uy</div>
+            <div class="footer-links">
+                <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+                <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+                <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            </div>
+            <div class="footer-social">
+                <a href="#">⧉</a>
+                <a href="#">in</a>
+                <a href="#">Be</a>
+                <a href="#">✕</a>
+            </div>
+        </div>
+        <div class="copyright">Copyright © 2024 by Gabriel Uy</div>
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,472 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_MainPortfolioWebLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Gabriel Uy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff; /* base color */
+            position: relative;
+            min-height: 100vh;
+        }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/images/25097.jpg") no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.6; /* 👈 adjust this (0.0 – 1.0) */
+                z-index: -1;
+            }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #5a5a5a;
+                font-weight: 400;
+                transition: color 0.2s;
+            }
+
+                .nav-links a:hover {
+                    color: #000;
+                }
+
+        .cta-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+            .cta-btn:hover {
+                background: #f5f5f5;
+            }
+
+        /* Added divider line between nav and content */
+        .nav-divider {
+            height: 1px;
+            background-color: #ebebeb;
+            margin: 0 48px;
+        }
+
+        /* --- MAIN --- */
+        .main-content {
+            padding: 64px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .contact-form {
+            margin-bottom: 48px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ebebeb;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            background-color: #ffffff;
+            transition: border-color 0.2s;
+        }
+
+            .form-input:focus, .form-textarea:focus {
+                outline: none;
+                border-color: #000000;
+            }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .submit-button:hover {
+                background-color: #333333;
+            }
+
+        .contact-info {
+            margin-bottom: 48px;
+        }
+
+        .contact-item {
+            margin-bottom: 16px;
+        }
+
+        .contact-label {
+            font-weight: 500;
+            color: #000000;
+            font-size: 14px;
+        }
+
+        .contact-value {
+            color: #5a5a5a;
+            font-size: 14px;
+        }
+
+        .portfolio-showcase {
+            background-color: #22262f;
+            border-radius: 8px;
+            padding: 32px;
+            margin-top: 48px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .showcase-image {
+            background-image: url('/placeholder.svg?height=160&width=280');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            width: 280px;
+            height: 160px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid #e5e5e5;
+            padding: 40px 48px;
+            background: #111;
+            color: #aaa;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+            .footer-links a {
+                text-decoration: none;
+                color: #aaa;
+                font-size: 14px;
+                transition: color 0.2s;
+            }
+
+                .footer-links a:hover {
+                    color: #fff;
+                }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+            .footer-social a {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 1px solid #444;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #aaa;
+                text-decoration: none;
+            }
+
+                .footer-social a:hover {
+                    color: white;
+                    border-color: white;
+                }
+
+        .copyright {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <a href="@Url.Action("Home", "Home")"
+           class="logo @(ViewBag.Title == "Home" ? "active" : "")">
+            Gabriel Uy
+        </a>
+        <div class="nav-links">
+            <a href="@Url.Action("Home", "Home")" class="@(ViewBag.Title == "Home" ? "active" : "")">Home</a>
+            <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+            <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+            <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            <a href="@Url.Action("Contact", "Home")"
+               class="cta-btn @(ViewBag.Title == "Contact" ? "active" : "")" style="font-weight: bold;">
+                Contact
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- Added divider line -->
+    <div class="nav-divider"></div>
+
+    <div class="main-content" ng-controller="contactCtrl">
+        <div class="page-header">
+            <h1 class="page-title">Interested in connecting?</h1>
+        </div>
+
+
+        <form name="contactForm" ng-submit="submitForm(contactForm, $event)" novalidate>
+            <!-- Name -->
+            <div class="form-group">
+                <label class="form-label" for="name">
+                    Name
+                    <span class="required" ng-show="errors.name && (contactForm.name.$touched || contactForm.$submitted)">*</span>
+                </label>
+                <input type="text" id="name" name="name" class="form-input" ng-model="formData.name">
+                <div class="text-red-400" ng-show="errors.name && (contactForm.name.$touched || contactForm.$submitted)" ng-bind="errors.name"></div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label class="form-label" for="phone">
+                    Phone
+                    <span class="required" ng-show="errors.phone && (contactForm.phone.$touched || contactForm.$submitted)">*</span>
+                </label>
+                <input type="text" id="phone" name="phone" class="form-input"
+                       ng-model="formData.phone"
+                       placeholder="e.g. +639123456789"
+                       oninput="this.value = this.value.replace(/[^0-9+]/g,'')">
+                <div class="text-red-400" ng-show="errors.phone && (contactForm.phone.$touched || contactForm.$submitted)" ng-bind="errors.phone"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label class="form-label" for="email">
+                    Email
+                    <span class="required" ng-show="errors.email && (contactForm.email.$touched || contactForm.$submitted)">*</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-input" ng-model="formData.email">
+                <div class="text-red-400" ng-show="errors.email && (contactForm.email.$touched || contactForm.$submitted)" ng-bind="errors.email"></div>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+                <label class="form-label" for="subject">
+                    Subject
+                    <span class="required" ng-show="errors.subject && (contactForm.subject.$touched || contactForm.$submitted)">*</span>
+                </label>
+                <select id="subject" name="subject" class="form-input" ng-model="formData.subject">
+                    <option value="" disabled>Select an option</option>
+                    <option value="collaborate">Collaborate on a project</option>
+                    <option value="hire">Work with me (Job/Contract)</option>
+                    <option value="proposal">Send a proposal</option>
+                    <option value="portfolio">Feedback on my portfolio</option>
+                    <option value="other">Other inquiries</option>
+                </select>
+                <div class="text-red-400" ng-show="errors.subject && (contactForm.subject.$touched || contactForm.$submitted)" ng-bind="errors.subject"></div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label class="form-label" for="message">
+                    Message
+                    <span class="required" ng-show="errors.message && (contactForm.message.$touched || contactForm.$submitted)">*</span>
+                </label>
+                <textarea id="message" name="message" class="form-textarea" ng-model="formData.message"
+                          placeholder="Tell me about your project or just say hello!"></textarea>
+                <div class="text-red-400" ng-show="errors.message && (contactForm.message.$touched || contactForm.$submitted)" ng-bind="errors.message"></div>
+            </div>
+
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+
+        <p ng-if="submitted" class="confirmation">Your form was submitted successfully!</p>
+
+        <style>
+            .confirmation {
+                margin-top: 10px;
+                padding: 10px 16px;
+                display: inline-block;
+                background: #e6f7ec; /* soft matte green */
+                color: #2e7d32;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                font-weight: 300;
+                transition: box-shadow 0.6s ease;
+            }
+
+            .required {
+                color: red;
+                font-weight: bold;
+                transition: opacity 0.2s ease;
+            }
+
+            input.ng-valid + .required,
+            select.ng-valid + .required,
+            textarea.ng-valid + .required {
+                opacity: 0;
+            }
+
+            .p{
+                background-color: red;
+            }
+
+        </style>
+
+        <p> {{multiarray}} </p>
+
+        <!--  Matte Table -->
+        <table ng-if="multiarray.length > 0"
+               style="border-collapse: separate; border-spacing: 0; width: 100%; margin-top: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #fff; transition: all 0.3s ease;">
+            <thead>
+                <tr style="background: #f5f5f7; transition: background 0.3s ease;">
+                    <th style="padding: 14px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; font-weight: 300;">Name</th>
+                    <th style="padding: 14px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; font-weight: 300;">Email</th>
+                    <th style="padding: 14px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; font-weight: 300;">Phone</th>
+                    <th style="padding: 14px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; font-weight: 300;">Subject</th>
+                    <th style="padding: 14px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; font-weight: 300;">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userData in multiarray" style="transition: background 0.3s ease;">
+                    <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0;">{{userData.name}}</td>
+                    <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0;">{{userData.email}}</td>
+                    <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0;">{{userData.phone}}</td>
+                    <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0;">{{userData.subject}}</td>
+                    <td style="padding: 14px 16px; border-bottom: 1px solid #f0f0f0;">{{userData.message}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <style>
+            table tbody tr:hover {
+                background: #f9f9fb;
+                transform: scale(1.002);
+            }
+        </style>
+
+        <br>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">gabriel.uy@email.com</div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">linkedin.com/in/gabrieluy</div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Location</div>
+                <div class="contact-value">Sydney, Australia</div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">Available for</div>
+                <div class="contact-value">Full-time opportunities, freelance projects, design consultations</div>
+            </div>
+        </div>
+    </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-content">
+                <div>Gabriel Uy</div>
+                <div class="footer-links">
+                    <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+                    <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+                    <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#">⧉</a>
+                    <a href="#">in</a>
+                    <a href="#">Be</a>
+                    <a href="#">✕</a>
+                </div>
+            </div>
+            <div class="copyright">Copyright © 2024 by Gabriel Uy</div>
+        </footer>
+
+</body>
+</html>

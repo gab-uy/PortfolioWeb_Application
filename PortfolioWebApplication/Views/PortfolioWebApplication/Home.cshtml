@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_MainPortfolioWebLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Uy - UI/UX Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff; /* base color */
+            position: relative;
+            min-height: 100vh;
+        }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/images/25097.jpg") no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.6; /* 👈 adjust this (0.0 – 1.0) */
+                z-index: -1;
+            }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #5a5a5a;
+                font-weight: 400;
+                transition: color 0.2s;
+            }
+
+                .nav-links a:hover {
+                    color: #000;
+                }
+
+        .cta-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+            .cta-btn:hover {
+                background: #f5f5f5;
+            }
+
+        /* Added divider line between nav and content */
+        .nav-divider {
+            height: 1px;
+            background-color: #ebebeb;
+            margin: 0 48px;
+        }
+
+        /* --- MAIN --- */
+        .main-content {
+            padding: 64px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-section {
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-image: url('/images/bwdp.png');
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 24px;
+        }
+
+        .intro-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 36px;
+            font-weight: 300;
+            max-width: 650px;
+            margin-bottom: 24px;
+            font-style: normal;
+        }
+
+        /* Social buttons */
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+            .social-links a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border: 1px solid #ddd;
+                border-radius: 50%;
+                text-decoration: none;
+                color: #000;
+                font-size: 14px;
+                transition: background 0.2s;
+            }
+
+                .social-links a:hover {
+                    background: #f5f5f5;
+                }
+
+        /* --- Projects --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .project-img:hover {
+                filter: brightness(85%);
+                transform: translateY(-8px); /* lifts up */
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* floating shadow */
+            }
+
+        .graduation-project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #1a1a1a;
+            border-radius: px;
+            padding: 90px;
+            color: white;
+            align-items: center;
+            gap: 32px;
+        }
+
+            .graduation-project h2 {
+                letter-spacing: -1px;
+                font-size: 60px;
+                font-weight: 340;
+                margin-bottom: 16px;
+                line-height: 75px;
+            }
+
+            .graduation-project p {
+                color: #afafac;
+                font-weight: 100;
+                font-size: 20px;
+            }
+
+            .graduation-project img {
+                width: 100%;
+                border-radius: 12px;
+            }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid #e5e5e5;
+            padding: 40px 48px;
+            background: #111;
+            color: #aaa;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+            .footer-links a {
+                text-decoration: none;
+                color: #aaa;
+                font-size: 14px;
+                transition: color 0.2s;
+            }
+
+                .footer-links a:hover {
+                    color: #fff;
+                }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+            .footer-social a {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 1px solid #444;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #aaa;
+                text-decoration: none;
+            }
+
+                .footer-social a:hover {
+                    color: white;
+                    border-color: white;
+                }
+
+        .copyright {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav>
+        <a href="@Url.Action("Home", "Home")"
+           class="logo @(ViewBag.Title == "Home" ? "active" : "")">
+            Gabriel Uy
+        </a>
+        <div class="nav-links">
+
+            <a href="@Url.Action("Home", "Home")" class="@(ViewBag.Title == "Home" ? "active" : "")" style="font-weight: bold;">Home</a>
+            <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+            <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+            <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            <a href="@Url.Action("Contact", "Home")" class="@(ViewBag.Title == "Contact" ? "active" : "cta-btn")">Contact</a>
+        </div>
+    </nav>
+    <!-- Added divider line -->
+    <div class="nav-divider"></div>
+
+    <!-- MAIN -->
+    <div class="main-content">
+        <div class="profile-section">
+            <div class="profile-image"></div>
+            <h1 class="intro-text">
+                I’m Gabriel Uy, a UI/UX designer specializing in creating sleek, user-friendly mobile apps.
+            </h1>
+
+            <div class="social-links">
+                <a href="#" style="font-weight: bold;">⧉</a>
+                <a href="#" style="font-weight: bold;">in</a>
+                <a href="#" style="font-weight: bold;">Be</a>
+                <a href="#" style="font-weight: bold;">✕</a>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="project-grid">
+            <img src="~/images/image 89.png" alt="Project 1" class="project-img">
+            <img src="~/images/image 90.png" alt="Project 2" class="project-img">
+        </div>
+
+        <!-- Graduation Project -->
+        <div class="graduation-project">
+            <div>
+                <h2>My graduation project</h2>
+                <p>Revolutionizing the educational ecosystem with MacBook and web apps designed to enhance interactive learning and peer collaboration.</p>
+            </div>
+            <img src="~/images/Mashable.gif" alt="Graduation Project">
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>Gabriel Uy</div>
+            <div class="footer-links">
+                <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+                <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+                <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            </div>
+            <div class="footer-social">
+                <a href="#">⧉</a>
+                <a href="#">in</a>
+                <a href="#">Be</a>
+                <a href="#">✕</a>
+            </div>
+        </div>
+        <div class="copyright">Copyright © 2024 by Gabriel Uy</div>
+    </footer>
+</body>
+</html>
+
+
+
+

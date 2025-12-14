@@ -1,0 +1,413 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_MainPortfolioWebLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Gabriel Uy</title>
+    <style>
+        /* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fff; /* base color */
+            position: relative;
+            min-height: 100vh;
+        }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("/images/25097.jpg") no-repeat center center fixed;
+                background-size: cover;
+                opacity: 0.6; /* 👈 adjust this (0.0 – 1.0) */
+                z-index: -1;
+            }
+
+/* --- NAVBAR --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #5a5a5a;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #000;
+}
+
+.cta-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background: #f5f5f5;
+}
+
+/* Divider under nav */
+.nav-divider {
+    height: 1px;
+    background-color: #ebebeb;
+    margin: 0 48px;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    padding: 64px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Typography */
+.page-title {
+    font-size: 32px;
+    font-weight: 300;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.about-text,
+.inspiration-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #5a5a5a;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* About Section */
+.about-section {
+    margin-bottom: 80px;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Personal photo */
+        .personal-photo {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background-color: #ebebeb;
+            border-radius: 12px;
+            background-image: url('/images/sideprof.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            justify-self: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* subtle default shadow */
+        }
+
+            /* Hover effect */
+            .personal-photo:hover {
+                transform: translateY(-8px) scale(1.03);
+                filter: brightness(95%) saturate(105%);
+                box-shadow: 0 16px 32px rgba(0,0,0,0.25), 0 6px 12px rgba(0,0,0,0.1);
+            }
+
+/* Inspirations */
+.inspiration-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+}
+
+.inspiration-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inspiration-photo.portrait {
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.inspiration-photo.landscape {
+    width: 100%;
+    height: 520px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    /* Assign actual images */
+    .portrait-1 { background-image: url('/images/oaknew.jpg'); }
+    .portrait-2 { background-image: url('/images/photog.png'); }
+    .landscape-1 { background-image: url('/images/cuteko.png'); }
+
+        /* Base styles for portraits/landscapes */
+        .portrait-1,
+        .portrait-2,
+        .landscape-1 {
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            width: 100%; /* adjust as needed */
+            height: 300px; /* adjust per design */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* default subtle shadow */
+            cursor: pointer;
+        }
+
+            /* Hover effect */
+            .portrait-1:hover,
+            .portrait-2:hover,
+            .landscape-1:hover {
+                transform: translateY(-8px) scale(1.03);
+                box-shadow: 0 16px 32px rgba(0,0,0,0.25), 0 6px 12px rgba(0,0,0,0.1);
+            }
+
+
+        .looking-ahead {
+            background-color: #f8f8f8;
+            padding: 40px;
+            margin-top: 48px;
+            border-radius: 16px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+            /* Hover effect */
+            .looking-ahead:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            }
+
+            /* Optional glowing border effect */
+            .looking-ahead::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 16px;
+                padding: 2px; /* thickness of glow border */
+                background: linear-gradient(135deg, #5a5a5a, #5a5a5a);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+                mask-composite: exclude;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+
+            .looking-ahead:hover::after {
+                opacity: 1;
+            }
+
+/* --- FOOTER --- */
+footer {
+    margin-top: 80px;
+    border-top: 1px solid #e5e5e5;
+    padding: 40px 48px;
+    background: #111;
+    color: #aaa;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: white;
+    border-color: white;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #666;
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="@Url.Action("Home", "Home")"
+           class="logo @(ViewBag.Title == "Home" ? "active" : "")">
+            Gabriel Uy
+        </a>
+        <div class="nav-links">
+
+            <a href="@Url.Action("Home", "Home")" class="@(ViewBag.Title == "Home" ? "active" : "")">Home</a>
+            <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+            <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+            <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")" style="font-weight: bold;">About</a>
+            <a href="@Url.Action("Contact", "Home")" class="@(ViewBag.Title == "Contact" ? "active" : "cta-btn")">Contact</a>
+        </div>
+    </nav>
+    <!-- Added divider line -->
+    <div class="nav-divider"></div>
+
+    <div class="main-content">
+        <!-- About Section -->
+        <div class="about-section" style="display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: center; margin-bottom: 80px;">
+            <div class="personal-photo"></div>
+            <div>
+                <h1 class="page-title">Who I am beyond Design</h1>
+                <p class="about-text">
+                    More than a UI/UX designer, I'm a storyteller, problem-solver, and creative thinker. My journey into design began with a fascination for how people interact with technology and how thoughtful design can make complex tasks feel effortless.
+                </p>
+                <p class="about-text">
+                    When I'm not crafting user experiences, you'll find me exploring new cuisines, capturing moments through photography, or hiking trails that offer fresh perspectives—literally and figuratively.
+                </p>
+            </div>
+        </div>
+
+        <!-- Inspirations Section -->
+        <div class="about-section">
+            <h1 class="page-title">My inspirations and interests</h1>
+            <p class="about-text">
+                I draw inspiration from everyday interactions, cultural diversity, and the intersection of technology with human behavior. My design philosophy centers on empathy, accessibility, and creating digital experiences that feel natural and inclusive.
+            </p>
+
+            <div class="inspiration-grid" style="margin-top: 32px;">
+                <!-- Left side with 2 portrait photos stacked -->
+                <div class="inspiration-left" style="display: flex; flex-direction: column; gap: 16px;">
+                    <div class="inspiration-photo portrait portrait-1"></div>
+                    <div class="inspiration-photo portrait portrait-2"></div>
+                </div>
+
+                <!-- Right side with 1 big landscape photo -->
+                <div>
+                    <div class="inspiration-photo landscape landscape-1"></div>
+                </div>
+            </div>
+
+            <p class="inspiration-text" style="margin-top: 24px; color: #5a5a5a; line-height: 1.6;">
+                From studying how people navigate bustling markets to observing the subtle gestures in coffee shop interactions, I find design insights everywhere. These observations fuel my passion for creating interfaces that feel intuitive and human-centered.
+            </p>
+        </div>
+
+        <!-- Looking Ahead -->
+        <div class="looking-ahead">
+            <h2 class="section-title">Looking ahead</h2>
+            <p class="about-text">
+                As I embark on my professional journey, I'm excited about the opportunity to work with diverse teams, tackle complex design challenges, and contribute to products that make a meaningful impact on people's lives. I'm particularly interested in sustainable design practices and emerging technologies like AR/VR.
+            </p>
+            <p class="about-text">
+                My goal is to continue growing as a designer while staying true to my core values of empathy, inclusivity, and thoughtful problem-solving. I believe the best designs are those that seamlessly blend functionality with delight.
+            </p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>Gabriel Uy</div>
+            <div class="footer-links">
+                <a href="@Url.Action("Projects", "Home")" class="@(ViewBag.Title == "Projects" ? "active" : "")">Projects</a>
+                <a href="@Url.Action("Resume", "Home")" class="@(ViewBag.Title == "Resume" ? "active" : "")">Resume</a>
+                <a href="@Url.Action("About", "Home")" class="@(ViewBag.Title == "About" ? "active" : "")">About</a>
+            </div>
+            <div class="footer-social">
+                <a href="#">⧉</a>
+                <a href="#">in</a>
+                <a href="#">Be</a>
+                <a href="#">✕</a>
+            </div>
+        </div>
+        <div class="copyright">Copyright © 2024 by Gabriel Uy</div>
+    </footer>
+
+</body>
+</html>
+
+
