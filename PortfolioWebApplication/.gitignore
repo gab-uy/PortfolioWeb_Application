@@ -1,0 +1,20 @@
+﻿## Build folders
+bin/
+obj/
+
+## Visual Studio files
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+## NuGet
+packages/
+
+## Publish
+*.Publish.xml
+
+## OS files
+.DS_Store
+Thumbs.db
